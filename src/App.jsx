@@ -1,6 +1,6 @@
-import CourseList from "./components/CourseList.jsx";
+import CourseList from "./components/CourseList.jsx"; // CourseList 파일을 import하여 사용
 
-export default function App() {
+export default function App() { // App 함수를 정의하고 이 파일의 기본 내보내기로 지정
   return (
     <main className="page">
       <header className="hero">
@@ -11,7 +11,7 @@ export default function App() {
         </div>
         <span className="tag">STUDENT STARTER</span>
       </header>
-      <CourseList />
+      <CourseList /> {/* CourseList 컴포넌트를 가지고와서 화면에 표시 */}
       <footer className="bottom">
         <span>OSS Week 11 · React</span>
         <span>Local state only · Refresh resets data</span>
