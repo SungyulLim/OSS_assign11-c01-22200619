@@ -1,27 +1,28 @@
-import { useState } from "react"; // React의 useState 훅을 import하여 상태 관리를 위해 사용 => 
-import CourseItem from "./CourseItem.jsx"; // CourseItem 파일을 import하여 사용 
+import { useState } from "react"; // React의 useState 훅을 import하여 상태 관리를 위해 사용 =>
+import CourseItem from "./CourseItem.jsx"; // CourseItem 파일을 import하여 사용
 import { initialCourses } from "../data/courses.js"; // 초기 과목 데이터를 import하여 사용
 
-export default function CourseList() { // CourseList 컴포넌트를 정의하고 이 파일의 기본 내보내기로 지정
+export default function CourseList() { // CourseList 컴포넌트를 정의하고 이 파일의 내보내기 지정
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
   const [newName, setNewName] = useState("");
 
   // [제공] 삭제 기능: filter로 새 배열을 만들어 업데이트합니다.
   function handleDelete(id) { // 삭제 기능
-    if (!window.confirm("이 과목을 삭제하시겠습니까?")) return;
+    if (!window.confirm("이 과목을 삭제하시겠습니까?")) return;ß
     setCourses((previous) => previous.filter((course) => course.id !== id)); // filter를 사용하여 id가 일치하지 않는 과목만 남긴 새 배열을 만들어 setCourses로 상태를 업데이트
   }
 
   // TODO 1 (필수): 과목 추가 기능을 구현하세요.
-  function handleAdd(event) { // 추가 기능
+  function handleAdd(event) {
+    // 추가 기능
     event.preventDefault();
     // TODO: 빈 입력 검사, 새 과목 객체 생성, setCourses 호출, 입력창 초기화
-
   }
 
   // TODO 2 (필수): 완료 상태 변경 기능을 구현하세요.
-  function handleToggle(id) { // 완료 상태 변경 기능
+  function handleToggle(id) {
+    // 완료 상태 변경 기능
     // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
   }
 
@@ -70,14 +71,14 @@ export default function CourseList() { // CourseList 컴포넌트를 정의하�
         </div>
         {courses.length === 0 && (
           <div className="empty">등록된 과목이 없습니다.</div>
-        )}
+        )} {/*courses 배열이 비어있으면 "등록된 과목이 없습니다."라는 메시지를 표시 */ }
         {courses.map((course) => (
           <CourseItem
             key={course.id}
             course={course}
             onDelete={handleDelete}
             onToggle={handleToggle}
-          />
+          />  // CourseItem 컴포넌트를 사용하여 각 과목을 표시하고, 삭제 및 완료 상태 변경 기능을 props로 전달
         ))}
       </section>
     </>
