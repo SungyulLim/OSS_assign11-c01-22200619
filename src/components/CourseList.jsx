@@ -7,6 +7,7 @@ export default function CourseList() {
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
   const [newName, setNewName] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // [제공] 삭제 기능: filter로 새 배열을 만들어 업데이트합니다.
   function handleDelete(id) {
@@ -47,24 +48,27 @@ export default function CourseList() {
   function handleToggle(id) {
     // 완료 상태 변경 기능
     // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
-      setCourses(function (previous) {
-        
-        const updatedCourses = previous.map(function (course) {
-          if (course.id === id) {
-            return {
-              ...course,
-              completed: !course.completed,
-            };
-          }
+    setCourses(function (previous) {
+      const updatedCourses = previous.map(function (course) {
+        if (course.id === id) {
+          return {
+            ...course,
+            completed: !course.completed,
+          };
+        }
 
-          return course;
-        });
-
-        return updatedCourses;
+        return course;
       });
+
+      return updatedCourses;
+    });
   }
 
   const doneCount = courses.filter((course) => course.completed).length;
+
+  const filteredCourses = courses.filter((course) =>
+    course.name.toLowerCase().includes(searchTerm.trim().toLowerCase()),
+  );
 
   return (
     <>
@@ -87,9 +91,6 @@ export default function CourseList() {
           <h2>My Courses</h2>
           <span className="small-note">{courses.length} courses</span>
         </div>
-        <p className="todo">
-          실습 과제: 아래 Add 버튼과 완료 체크박스의 기능을 직접 구현하세요.
-        </p>
         <form className="add-form" onSubmit={handleAdd}>
           <input
             className="input"
@@ -102,16 +103,30 @@ export default function CourseList() {
             + Add Course
           </button>
         </form>
+        {/* 과목명 검색 */}
+        <div className="tools">
+          <input
+            className="input"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            placeholder="과목명 검색"
+          />
+        </div>
+
         <div className="list-head">
           <span>COURSE</span>
           <span>CATEGORY</span>
           <span>ACTIONS</span>
         </div>
-        {courses.length === 0 && (
-          <div className="empty">등록된 과목이 없습니다.</div>
-        )}{" "}
+        {filteredCourses.length === 0 && (
+          <div className="empty">
+            {courses.length === 0
+              ? "등록된 과목이 없습니다."
+              : "조건에 맞는 과목이 없습니다."}
+          </div>
+        )}
         {/*courses 배열이 비어있으면 "등록된 과목이 없습니다."라는 메시지를 표시 */}
-        {courses.map((course) => (
+        {filteredCourses.map((course) => (
           <CourseItem
             key={course.id}
             course={course}
