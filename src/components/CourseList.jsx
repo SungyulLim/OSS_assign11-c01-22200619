@@ -20,12 +20,48 @@ export default function CourseList() {
     // 추가 기능
     event.preventDefault();
     // TODO: 빈 입력 검사, 새 과목 객체 생성, setCourses 호출, 입력창 초기화
+    event.preventDefault();
+
+    if (newName.trim() === "") {
+      alert("과목명을 입력해주세요.");
+      return;
+    }
+
+    setCourses((previous) => {
+      const nextId = Math.max(0, ...previous.map((course) => course.id)) + 1;
+
+      const newCourse = {
+        id: nextId,
+        name: newName.trim(),
+        category: "Major",
+        completed: false,
+      };
+
+      return [...previous, newCourse];
+    });
+
+    setNewName("");
   }
 
   // TODO 2 (필수): 완료 상태 변경 기능을 구현하세요.
   function handleToggle(id) {
     // 완료 상태 변경 기능
     // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
+      setCourses(function (previous) {
+        
+        const updatedCourses = previous.map(function (course) {
+          if (course.id === id) {
+            return {
+              ...course,
+              completed: !course.completed,
+            };
+          }
+
+          return course;
+        });
+
+        return updatedCourses;
+      });
   }
 
   const doneCount = courses.filter((course) => course.completed).length;
