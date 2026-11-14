@@ -6,8 +6,8 @@ export default function App() { // App 함수를 정의하고 이 파일의 기�
       <header className="hero">
         <div>
           <p className="topline">OPEN SOURCE STUDIO · WEEK 11</p>
-          <h1>My Course Manager</h1>
-          <p className="subtitle">React Component, Props & State Practice</p>
+          <h1>26-2 학기 시간표</h1>
+          <p className="subtitle">수강 과목과 학습 완료 현황을 관리</p>
         </div>
         <span className="tag">STUDENT STARTER</span>
       </header>

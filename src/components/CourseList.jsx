@@ -2,14 +2,16 @@ import { useState } from "react"; // React의 useState 훅을 import하여 상�
 import CourseItem from "./CourseItem.jsx"; // CourseItem 파일을 import하여 사용
 import { initialCourses } from "../data/courses.js"; // 초기 과목 데이터를 import하여 사용
 
-export default function CourseList() { // CourseList 컴포넌트를 정의하고 이 파일의 내보내기 지정
+export default function CourseList() {
+  // CourseList 컴포넌트를 정의하고 이 파일의 내보내기 지정
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
   const [newName, setNewName] = useState("");
 
   // [제공] 삭제 기능: filter로 새 배열을 만들어 업데이트합니다.
-  function handleDelete(id) { // 삭제 기능
-    if (!window.confirm("이 과목을 삭제하시겠습니까?")) return;ß
+  function handleDelete(id) {
+    // 삭제 기능
+    if (!window.confirm("이 과목을 삭제하시겠습니까?")) return;
     setCourses((previous) => previous.filter((course) => course.id !== id)); // filter를 사용하여 id가 일치하지 않는 과목만 남긴 새 배열을 만들어 setCourses로 상태를 업데이트
   }
 
@@ -71,14 +73,15 @@ export default function CourseList() { // CourseList 컴포넌트를 정의하�
         </div>
         {courses.length === 0 && (
           <div className="empty">등록된 과목이 없습니다.</div>
-        )} {/*courses 배열이 비어있으면 "등록된 과목이 없습니다."라는 메시지를 표시 */ }
+        )}{" "}
+        {/*courses 배열이 비어있으면 "등록된 과목이 없습니다."라는 메시지를 표시 */}
         {courses.map((course) => (
           <CourseItem
             key={course.id}
             course={course}
             onDelete={handleDelete}
             onToggle={handleToggle}
-          />  // CourseItem 컴포넌트를 사용하여 각 과목을 표시하고, 삭제 및 완료 상태 변경 기능을 props로 전달
+          /> // CourseItem 컴포넌트를 사용하여 각 과목을 표시하고, 삭제 및 완료 상태 변경 기능을 props로 전달
         ))}
       </section>
     </>
