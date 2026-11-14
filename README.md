@@ -73,6 +73,32 @@ function handleDelete(id) {
 ---
 ## Customizing: 수정한 데이터, 텍스트, 스타일 및 파일명
 
+### 1. 초기 과목 데이터 변경
+- 수정 파일: `src/data/courses.js`
+- 초기 과목을 내가 선택한 다음 5개 과목으로 변경.
+  - OSS
+  - WSD
+  - Discrete Mathematics
+  - Computer Architecture and Organization
+  - 선형대수학
+- 기존 데이터 구조인 `id`, `name`, `category`, `completed`는 유지.
+
+### 2. 프로젝트 제목 및 설명 변경
+- 수정 파일: `src/App.jsx`
+- 프로젝트 제목을 `My Course Manager`에서 `26-2 학기 시간표`로 변경.
+- 설명을 `React Component, Props & State Practice`에서 `수강 과목과 학습 완료 현황을 관리`로 변경.
+- 개인 학기의 수강 과목을 관리하는 목적에 맞게 화면 문구를 수정.
+
+### 3. CSS 스타일 변경
+- 수정 파일: `src/App.css`
+
+| 수정한 선택자 | 주요 변경 내용 |
+|---|---|
+| `:root` | 전체 배경색을 연한 초록색 `#f0fdf4`로 변경. |
+| `.hero h1` | 제목 글자색을 진한 초록색 `#166534`로 지정. |
+| `.btn.primary` | Add 버튼의 배경색을 초록색 `#15803d`로 변경. |
+| `.btn.primary:hover` | Add 버튼에 마우스를 올리면 진한 초록색 `#166534`가 표시되도록 변경. |
+
 ## Feature Extension: 구현한 기능 2개 이상, 주요 코드 및 동작 결과
 
 ## Deployment
